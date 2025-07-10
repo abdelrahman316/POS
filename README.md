@@ -43,4 +43,5 @@ Also most of the component are separate simple re-usable **modules** with separa
 
 ## License
 
-MIT License
+[MIT License
+](./LICENSE)
