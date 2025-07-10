@@ -447,7 +447,7 @@ app.post('/checkout', requireLogin, (req, res) => {
                 return res.json({ 
                     success: false, 
                     message: error.message,
-                    actions: ["reload_products", "render_products", "reload_cart"]  // trigger actions on the client-side
+                    actions: ["reload_products", "render_products", "render_cart"]  // trigger actions on the client-side
                 });
             });
         };
