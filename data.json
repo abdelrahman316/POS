@@ -1,0 +1,71 @@
+{
+  "sqlite_db_file_name": "pos.db",
+  "username": "admin",
+  "password": "admin123",
+  "products": [
+    [
+      "Smartphone X10",
+      "900800700",
+      "Electronics",
+      599.99,
+      15,
+      "./tmp/smartphone.jpg"
+    ],
+    [
+      "Ultrabook Pro",
+      "900800200",
+      "Electronics",
+      1299.99,
+      8,
+      "./tmp/ultrabook.jpg"
+    ],
+    [
+      "Wireless Headphones",
+      "900800077",
+      "Electronics",
+      149.99,
+      22,
+      "./tmp/bluetooth_headphones.jpg"
+    ],
+    [
+      "Premium Coffee",
+      "100987324",
+      "Groceries",
+      12.99,
+      42,
+      "./tmp/coffee.gif"
+    ],
+    [
+      "Bestseller Novel",
+      "200345670",
+      "Books",
+      24.99,
+      4,
+      "./tmp/novel.jpg"
+    ],
+    [
+      "Cotton T-Shirt",
+      "400234587",
+      "Clothing",
+      19.99,
+      36,
+      "./tmp/tshirt.jpg"
+    ],
+    [
+      "Running Shoes",
+      "400937512",
+      "Clothing",
+      89.99,
+      14,
+      "./tmp/running_shoes.jpg"
+    ],
+    [
+      "Bluetooth Speaker",
+      "900700322",
+      "Electronics",
+      79.99,
+      25,
+      "./tmp/bluetooth_speaker.jpg"
+    ]
+  ]
+}
