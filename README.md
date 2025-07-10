@@ -2,7 +2,10 @@
 
 ## Overview
 
-This API powers a complete Point of Sale system with user authentication, product management, transaction processing, and administrative functions. The system uses SQLite for data storage and implements custom session management.
+This API powers a complete Point of Sale system with user authentication, product management, transaction processing, and administrative functions. 
+The system uses SQLite for data storage and implements custom session management.
+
+Also most of the component are separate simple re-usable **modules** with separate [documentations](./documentations) , feel free to use it building your projects
 
 ## Features
 
@@ -15,7 +18,6 @@ This API powers a complete Point of Sale system with user authentication, produc
 - **Dynamic Client-Side Interaction** Dynamic interaction through triggering actions on the client-side
 - **Code** Coded in JavaSript, Node.js only , even the modules
 
----
 
 ## Security Considerations
 
