@@ -147,7 +147,7 @@ function sendToServer(url, callback = console.log , data = {} , async = true) {
     }
 
     let payload ;
-    if( typeof data == "object" ){
+    if( data instanceof Object ){
         if( global.sid ){
             // payload should have a session id
             data.sid = global.sid ;
@@ -183,7 +183,7 @@ function sendToServer(url, callback = console.log , data = {} , async = true) {
             if (Array.isArray(res.actions)) {
                 res.actions.forEach(act => {
                     try {
-                        actions_list[act]?.(); // Safe optional chaining
+                        const actionResult = actions_list[act](); // Safe optional chaining
                     } catch (err) {
                         console.error(`Action '${act}' failed:`, err);
                     }
@@ -201,7 +201,7 @@ function sendToServer(url, callback = console.log , data = {} , async = true) {
     // set timeout to prevent hanging requests
     xhr.timeout = 10 * 1000 ; // 10 seconds
     xhr.ontimeout = () => callback({success: false, message: "Request timeout"});
-    
+
     xhr.send(payload);
 }
 
@@ -290,16 +290,9 @@ function initializeAppUI(response) {
     
     // load products data and initialize app
     // ( if it is a page reload the cart is loaded if exists )
-    loadProducts( ( status ) => {
-        if( !status ){
-            showNotification("Could not load products", "error");
-            return false;
-        }
-        renderProducts();
-        loadCart();
-        updateCartDisplay();
-        updateSecStep();
-    });
+    loadProducts();
+    renderProducts();
+    updateSecStep();
 }
 
 // logging out 
@@ -329,17 +322,14 @@ function resetGlobalData() {
 
 // Product/s Functions ===================================================
 
-function loadProducts(callback){
+function loadProducts(){
     sendToServer("/products", (response) => {
         if (!response.success || !Array.isArray(response.products)) {
             showNotification(response?.message || "Failed to load products", "error");
-            callback(false);
             return false;
         }
         
-        global.productsArray = response.products;
-        
-        if( callback ) callback(true);
+        global.productsArray = response.products; 
     });
 }
 
@@ -565,6 +555,7 @@ function checkout(){
             global.cart = [];
             showNotification('Purchase completed!');
         } else {
+            global.cart = [];
             showNotification(response.message || 'Checkout failed', 'error');
         }
     });
@@ -880,12 +871,12 @@ function renderStockView(){
 
                 if(ele.className.includes("img")){
                     tmpval = `${originalElement.src}`;
-                    tmpval = tmpval.replaceAll(InvalidCharsRegx, '');
+                    tmpval = tmpval.trim();
                     tmpele = document.createElement("input");
                     tmpele.type = "url";
                     tmpele.className = "tmp-input";
                     tmpele.placeholder = "image url...";
-                    tmpele.value = `${tmpval.replaceAll(InvalidCharsRegx, "")}`
+                    tmpele.value = `${tmpval.trim()}`
                     originalElement.remove();
                     ele.appendChild(tmpele);
                 }else{
@@ -920,11 +911,11 @@ function renderStockView(){
 
                         if(ele.className.includes("img")){
                             tmpval = ele.children[0].value ;
-                            tmpval = tmpval.replaceAll(InvalidCharsRegx, '');
+                            tmpval = tmpval.trim();
                             tmpele = document.createElement("img");
                             tmpele.dataset.contentKey = oldSet.contentKey;
                             tmpele.dataset.contentValue = tmpval;
-                            tmpele.src = InvalidCharsRegx;
+                            tmpele.src = tmpval;
                             tmpele.alt = "product image";
                             ele.children[0].remove();
                             ele.appendChild(tmpele);
@@ -1145,16 +1136,16 @@ function renderUsersView(){
 
         row.innerHTML =`
             <td data-editable=\"false\" class="user-id">
-                <span data-content-key=\"id\" data-content-value=\"${usr.id}\">#${usr.id}</span>
+                <strong data-content-key=\"id\" data-content-value=\"${usr.id}\">#${usr.id}</strong>
             </td>
             <td data-editable=\"false\" class="user-name">
-                <span data-content-key=\"username\" data-content-value=\"${usr.username}\">${usr.username}</span>
+                <strong data-content-key=\"username\" data-content-value=\"${usr.username}\">${usr.username}</strong>
             </td>
             <td data-editable=\"false\" class="user-role">
-                <span data-content-key=\"role\" data-content-value=\"${usr.role}\">${usr.role}</span>
+                <strong data-content-key=\"role\" data-content-value=\"${usr.role}\">${usr.role}</strong>
             </td>
-            <td data-editable=\"false\" class="user-status">
-                <span data-content-key=\"status\" data-content-value=\"${usr.status}\">${usr.status}</span>
+            <td data-editable=\"false\" class="user-status ${usr.status == true ? "live" : "notlive" }">
+                <strong data-content-key=\"status\" data-content-value=\"${usr.status}\">${usr.status}</strong>
             </td>
             </td>
             <td data-editable=\"false\">
@@ -1318,14 +1309,9 @@ function setupSecondStepEvents() {
     
     // Refresh products
     global.refreshBtn.addEventListener('click', () => {
-        loadProducts( (status)=>{
-            if( !status ){
-                showNotification("Could not load products", "error");
-                return false;
-            }
-            renderProducts();
-            showNotification("Products refreshed");
-        });
+        loadProducts();
+        renderProducts();
+        showNotification("Products refreshed");
     });
     
     // Search
