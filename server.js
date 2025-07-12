@@ -103,7 +103,7 @@ const requireLogin = (req, res, next) => {
         log.warn(`${loc} Unauthorized access attempt - no session `);
         return res.status(401).json({ success: false, message: "Unauthorized" });
     }
-
+    
     if (!sessionsManager.get_session(req.session.session_key)){
         log.warn(`${loc} Session expired: ${req.session.session_key.substring(0, 8)}...`);
         req.session = null;
@@ -435,7 +435,7 @@ app.post('/checkout', requireLogin, (req, res) => {
                 return res.json({ 
                     success: true, 
                     message: "Order Completed Successfully !",
-                    actions: ["reload_products", "render_cart"]
+                    actions: ["reload_products", "render_cart"] // "reload_products" == app.use("/products").then("render_products")
                 });
             });
         };
@@ -447,7 +447,7 @@ app.post('/checkout', requireLogin, (req, res) => {
                 return res.json({ 
                     success: false, 
                     message: error.message,
-                    actions: ["reload_products", "render_cart"]  // trigger actions on the client-side
+                    actions: ["reload_products", "render_cart"]
                 });
             });
         };
