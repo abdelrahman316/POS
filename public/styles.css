@@ -469,6 +469,12 @@ body {
     border-bottom: 1px solid #eee;
 }
 
+.empty-cart{
+    margin: 50px 10%;
+    color: rgba(0, 0, 0, 0.6);
+    visibility: visible;
+}
+
 .item-img {
     display: flex;
     align-items: center;
