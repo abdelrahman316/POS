@@ -831,6 +831,19 @@ body {
     border: solid #ccc 1px ;
 }
 
+.user-status {
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.user-status.live {
+    color: #22C55E;
+}
+
+.user-status.notlive {
+    color: var(--danger);
+}
+
 /* ===== TABLES ===== */
 
 .filter-controls {
