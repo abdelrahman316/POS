@@ -492,10 +492,12 @@ function updateCartDisplay() {
     global.cartItems.innerHTML = '';
     
     if (global.cart.length === 0) {
+
         global.emptyCartMessage.style.display = "block";
+        global.cartItems.innerHTML = global.emptyCartMessage.outerHTML;
         global.totalEl.textContent = '$0.00';
         global.checkoutBtn.disabled = true;
-        return;
+        return false;
     }
 
     global.emptyCartMessage.style.display = "none";
@@ -1313,12 +1315,23 @@ function setupSecondStepEvents() {
         renderProducts();
         showNotification("Products refreshed");
     });
-    
+
+    // setup sub window once
+    runSubWindow();
+
     // Search
     global.searchInput.addEventListener('input', renderProducts);
 
-    // Settings/Transactions button
-    document.getElementById("settingsBtn").addEventListener('click', runSubWindow );
+    // Settings/Transactions button and defualt view
+    document.getElementById("settingsBtn").addEventListener('click', e=>{
+        document.getElementById("subWindow").style.display = 'block';
+        const tabsBtns = document.querySelectorAll(".modal-tabs .tab-btn");
+        for(let btn of tabsBtns){
+            btn.classList.remove("active");
+        }
+        tabsBtns[0].classList.add("active");
+        loadTransactions();
+    });
     
     // Modal handlers
     window.addEventListener('click', (e) => {
@@ -1362,7 +1375,6 @@ function runSubWindow() {
     const subWindow = document.getElementById("subWindow");
     
     if (!subWindow ) return false;
-    else subWindow.style.display = 'block';
 
     // add "click" event listners for the views btns ( trans view is the defualt )
     // more then one btn means user role is "admin" and can toggle diferent views
@@ -1383,7 +1395,6 @@ function runSubWindow() {
                 action ? action.action() : console.log("undefined action") ;
             });
         }
-        tables_names_actions[0].action(); // as a defualt view
         for (let x = 0; x < tabsBtns.length; x++) tabsBtns[x].classList.remove("active");
         tabsBtns[0].classList.add("active")
     }else{
