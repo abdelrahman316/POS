@@ -435,7 +435,7 @@ app.post('/checkout', requireLogin, (req, res) => {
                 return res.json({ 
                     success: true, 
                     message: "Order Completed Successfully !",
-                    actions: ["reload_products", "render_products", "render_cart"]
+                    actions: ["reload_products", "render_cart"]
                 });
             });
         };
@@ -447,7 +447,7 @@ app.post('/checkout', requireLogin, (req, res) => {
                 return res.json({ 
                     success: false, 
                     message: error.message,
-                    actions: ["reload_products", "render_products", "render_cart"]  // trigger actions on the client-side
+                    actions: ["reload_products", "render_cart"]  // trigger actions on the client-side
                 });
             });
         };
@@ -553,7 +553,7 @@ app.post('/update_stock', requireAdmin, (req, res) => {
                     log.info(`${loc} Product ${data.productId} updated: ${data.key}=${data.value}`);
                     res.json({ 
                         success: true,
-                        actions: ["reload_stock", "reload_products", "render_products"]
+                        actions: ["reload_stock", "reload_products"]
                     });
                 }
             );
@@ -578,7 +578,7 @@ app.post('/update_stock', requireAdmin, (req, res) => {
                     res.json({ 
                         success: true,
                         productId: this.lastID ,
-                        actions: ["reload_stock", "reload_products", "render_products"]
+                        actions: ["reload_stock", "reload_products"]
                     });
                 }
             );
@@ -605,7 +605,7 @@ app.post('/update_stock', requireAdmin, (req, res) => {
                     log.info(`${loc} Product deleted: ${row.name} (ID: ${productId})`);
                     res.json({ 
                         success: true,
-                        actions: ["reload_stock", "reload_products", "render_products"]
+                        actions: ["reload_stock", "reload_products"]
                     });
                 });
             });
@@ -672,7 +672,7 @@ app.post('/update_users', requireAdmin, (req, res) => {
                     res.json({ 
                         success: true, 
                         userId: this.lastID,
-                        actions: ["reload_users", "render_users"]
+                        actions: ["reload_users"]
                     });
                 }
             );
@@ -699,7 +699,7 @@ app.post('/update_users', requireAdmin, (req, res) => {
                     log.info(`${loc} User deleted: ${row.username} (ID: ${userId})`);
                     res.json({ 
                         success: true,
-                        actions: ["reload_users", "render_users"]
+                        actions: ["reload_users"]
                     });
                 });
             });
