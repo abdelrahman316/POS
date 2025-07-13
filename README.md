@@ -2,9 +2,9 @@
 
 ## Overview
 
-This is a simple POS system web app built with node.js and sqlite .
-The API powers a complete Point of Sale system with user authentication, product management, transaction processing, and administrative functions. 
-The system uses SQLite for data storage and implements custom session management.
+- This is a simple POS system web app built with node.js and sqlite.
+- The API powers a complete Point of Sale system with user authentication, product management, transaction processing, and administrative functions. 
+- The system uses SQLite for data storage and implements custom session management.
 
 Also most of the component are simple re-usable **modules** with separate [documentations](./documentations) , feel free to use it building your projects
 
