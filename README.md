@@ -1,17 +1,18 @@
-# Point of Sale (POS) System API Documentation
+# Point of Sale (POS) System Web App
 
 ## Overview
 
-This API powers a complete Point of Sale system with user authentication, product management, transaction processing, and administrative functions. 
+This is a simple POS system web app built with node.js and sqlite .
+The API powers a complete Point of Sale system with user authentication, product management, transaction processing, and administrative functions. 
 The system uses SQLite for data storage and implements custom session management.
 
-Also most of the component are separate simple re-usable **modules** with separate [documentations](./documentations) , feel free to use it building your projects
+Also most of the component are simple re-usable **modules** with separate [documentations](./documentations) , feel free to use it building your projects
 
 [Demo video at vimeo](https://vimeo.com/1101035736)
 
 ## Features
 
-- **User Authentication**: Secure login with session management
+- **User Authentication**: Secure login with a custom sessions management
 - **Product Management**: Browse, add to cart, and checkout
 - **Inventory Control**: Stock level tracking and management
 - **Transaction Processing**: Complete sales with inventory updates
@@ -20,6 +21,7 @@ Also most of the component are separate simple re-usable **modules** with separa
 - **Dynamic Client-Side Interaction** Dynamic interaction through triggering actions on the client-side
 - **Code** Coded in JavaSript, Node.js only , even the modules
 
+## I think watching a demo video is better [just 3 mins](https://github.com/abdelrahmantheprogrammer/POS.git)
 
 ## Security Considerations
 
