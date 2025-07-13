@@ -21,7 +21,8 @@ Also most of the component are simple re-usable **modules** with separate [docum
 - **Dynamic Client-Side Interaction** Dynamic interaction through triggering actions on the client-side
 - **Code** Coded in JavaSript, Node.js only , even the modules
 
-## I think watching a demo video is better [just 3 mins](https://github.com/abdelrahmantheprogrammer/POS.git)
+## I think watching a demo video is better
+[it is just a 3 mins video](https://github.com/abdelrahmantheprogrammer/POS.git)
 
 ## Security Considerations
 
