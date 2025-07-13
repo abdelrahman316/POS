@@ -22,7 +22,7 @@ Also most of the component are simple re-usable **modules** with separate [docum
 - **Code** Coded in JavaSript, Node.js only , even the modules
 
 ## I think watching a demo video is better
-[it is just a 3 mins video](https://github.com/abdelrahmantheprogrammer/POS.git)
+[it is just a 3 mins video](https://vimeo.com/1101035736)
 
 ## Security Considerations
 
