@@ -7,6 +7,8 @@ The system uses SQLite for data storage and implements custom session management
 
 Also most of the component are separate simple re-usable **modules** with separate [documentations](./documentations) , feel free to use it building your projects
 
+[Demo video at vimeo](https://vimeo.com/1101035736)
+
 ## Features
 
 - **User Authentication**: Secure login with session management
